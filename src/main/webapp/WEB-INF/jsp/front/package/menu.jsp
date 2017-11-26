@@ -22,7 +22,7 @@
 				<li><a href="/login" style="color: red">登录</a></li>
 			</shiro:guest>
 			<shiro:user> 
-			 <li><a href="/back" style="color: #46d225">欢迎：<shiro:principal property="username"/></a></li><li><a href="/logout" style="color: #19b518">退出</a></li>
+			 <li><a href="/toManager" style="color: #46d225">欢迎：<shiro:principal property="username"/></a></li><li><a href="/logout" style="color: #19b518">退出</a></li>
 			</shiro:user>
 		</ul>
 	</div>

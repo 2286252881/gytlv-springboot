@@ -64,8 +64,9 @@ public class LoginController {
 	}
 
 	@RequestMapping("/toManager")
-	public Object toManager(HttpServletRequest request,Map<String, Object> map) {
-		
+	public String toManager(HttpServletRequest request,Map<String,Object> map) {
+		List<Ztree> allNodes=userService.getAllNodes();
+		map.put("nodes", allNodes);
 		return "back/manager";
 	}
 

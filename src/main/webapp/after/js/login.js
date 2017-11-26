@@ -29,7 +29,7 @@ function login(username, password) {
 				return false;
 			}
 			if (res.status == '200') {
-				$("#loginForm").attr("action", "/back").attr("method", "post");
+				$("#loginForm").attr("action", "/").attr("method", "post");
 				$("#loginForm").submit();
 			}
 		}

@@ -36,12 +36,6 @@ public class PageController {
 		return "front/index";
 	}
 	
-	@RequestMapping("/back")
-	public String showBack(HttpServletRequest request) {
-		return "back/manager";
-	}
-	
-	
 	@RequestMapping("/{page}")
 	public String showPage(@PathVariable String page,Map<String,Object> map,HttpServletRequest request) {
 		List<Menu> ms=userService.getAllMenu();
