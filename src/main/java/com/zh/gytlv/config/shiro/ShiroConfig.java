@@ -32,6 +32,9 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/article", "anon");
 		filterChainDefinitionMap.put("/support", "anon");
 		filterChainDefinitionMap.put("/click", "anon");
+		filterChainDefinitionMap.put("/reg", "anon");
+		filterChainDefinitionMap.put("/validatecode", "anon");
+		filterChainDefinitionMap.put("/doReg", "anon");
 		filterChainDefinitionMap.put("/checkLogin", "anon");
 		// filterChainDefinitionMap.put("/parseExcel", "anon");
 		// 配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了

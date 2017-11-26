@@ -1,6 +1,7 @@
 package com.zh.gytlv.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,6 +65,15 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<Ztree> getAllNodes() {
 		return userMapper.getAllNodes();
+	}
+
+	@Override
+	public int regUser(String username, String password) {
+		User reguser=new User();
+		reguser.setId(UUID.randomUUID().toString());
+		reguser.setUsername(username);
+		reguser.setPassword(password);
+		return userMapper.regUser(reguser);
 	}
 
 }

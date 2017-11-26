@@ -2,6 +2,7 @@ package com.zh.gytlv.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
@@ -35,6 +36,17 @@ public interface UserMapper {
 	@Select("select * from t_user where username=#{user.username} and password=#{user.password}")
 	public List<User> getUserByLogin(@Param("user") User user);
 
+	
+	/**
+	 * 用户注册
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	@Insert("insert into t_user (id,username,password) values(#{user.id},#{user.username},#{user.password})")
+	public int regUser(@Param("user")User regUser);
+	
+	
 	/**
 	 * 根据用户名称查询用户 shiro
 	 * 
@@ -87,4 +99,5 @@ public interface UserMapper {
 		@Result(property="children",column="id",
 		javaType=List.class,many=@Many(select="com.zh.gytlv.mapper.UserMapper.getNodes"))})
 	public List<Ztree> getAllNodes();
+	
 }

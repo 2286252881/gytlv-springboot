@@ -19,14 +19,17 @@
 				<label for="username">用户名</label><span id="usernametip"></span> <input type="text" class="form-control" id="username" placeholder="请填写用户名" value="root">
 			</div>
 			<div class="form-group">
-				<label for="password">密码</label> <input type="password" class="form-control" id="password" placeholder="请填写密码" value="admin">
+				<label for="password">密码</label> <input type="password" class="form-control" id="password" placeholder="请填写密码" value="">
 			</div>
 			<div class="form-group">
-				<input type="checkbox" name="rememberMe" id="rememberMe" />记住我<br>
+				<input type="checkbox" name="rememberMe" id="rememberMe" checked="checked" />记住我<br>
 			</div>
 		</form>
-		<button type="submit" class="btn btn-default">登录</button>
-		&nbsp;&nbsp;&nbsp;&nbsp;<a href="/">回到首页>>></a>
+		<div class="form-group">
+			<button type="submit"  id="login"   class="btn btn-default">登录</button>
+			<button type="submit"  id="reg"    class="btn btn-default">注册</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="/">回到首页>>></a>
+		</div>
 	</div>
 </body>
 </html>

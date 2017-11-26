@@ -30,4 +30,6 @@ public interface UserService {
 	public List<Ztree> getRoot();
 	public List<Ztree> getNodes(String id);
 	public List<Ztree> getAllNodes();
+
+	public int regUser(String username, String password);
 }
