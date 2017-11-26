@@ -41,7 +41,7 @@ $
 								data,
 								function(i) {
 									var str = '<a class="list-group-item glyphicon glyphicon-hand-right" onclick="detail('
-											+ data[i].id
+										+"'"+data[i].id+"'" 
 											+ ')"title="阅读人数:'
 											+ data[i].articleclick
 											+ '">&nbsp;'
@@ -57,12 +57,12 @@ $.ajax({
 	success : function(data) {
 		$.each(data, function(i) {
 			var str = '<a class="list-group-item glyphicon" onclick="detail('
-					+ data[i].id + ')" title="阅读人数:' + data[i].articleclick
+				+"'"+data[i].id+"'" + ')" title="阅读人数:' + data[i].articleclick
 					+ '">&nbsp;' + data[i].articlename + '</a>';
 			$("#click").append(str);
 		});
 	}
 });
 function detail(id) {
-	window.location.href = 'details?id=' + id;
+	window.location.href =id;
 }
