@@ -9,13 +9,22 @@
 
 <!-- layui -->
 <link rel="stylesheet" href="/plugin/layui/css/layui.css" media="all">
+<script src="/plugin/js/jquery-3.2.1.min.js" charset="utf-8"></script>
+<script src="/plugin/layui/layui.js" charset="utf-8"></script>
 
+<link rel="stylesheet" href="plugin/css/bootstrap.min.css" type="text/css" />
+<script src="/plugin/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/plugin/js/pagehelper/bootstrap-paginator.js" type="text/javascript"></script>
+<script src="/plugin/js/dialog.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="plugin/kindeditor/themes/default/default.css" />
-<link rel="stylesheet" href="plugin/kindeditor/plugins/code/prettify.css" />
-<script charset="utf-8" src="plugin/kindeditor/kindeditor-all.js"></script>
-<script charset="utf-8" src="plugin/kindeditor/lang/zh-CN.js"></script>
-<script charset="utf-8" src="plugin/kindeditor/plugins/code/prettify.js"></script>
+<script src="/after/js/manager.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/after/css/manager.css" type="text/css" />
+
+<link rel="stylesheet" href="/plugin/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="/plugin/kindeditor/plugins/code/prettify.css" />
+<script charset="utf-8" src="/plugin/kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" src="/plugin/kindeditor/lang/zh-CN.js"></script>
+<script charset="utf-8" src="/plugin/kindeditor/plugins/code/prettify.js"></script>
 <title>清风暮雨</title>
 </head>
 <body>
@@ -56,29 +65,29 @@
 									<c:forEach items="${pNode.children}" var="node" varStatus="j">
 										<c:if test="${j.index eq 0 }">
 											<dd class="layui-this">
-												<a href="${node.ahref}" target="view_frame">${node.name}</a>
+												<a href="javascript:void(0);"  onclick="goPage('${node.ahref}')" >${node.name}</a>
 											</dd>
 										</c:if>
 										<c:if test="${j.index gt 0 }">
 											<dd>
-												<a href="${node.ahref}" target="view_frame">${node.name}</a>
+												<a href="javascript:void(0);"  onclick="goPage('${node.ahref}')" >${node.name}</a>
 											</dd>
 										</c:if>
 									</c:forEach>
 								</dl></li>
 						</c:if>
 						<c:if test="${i.index gt 0 }">
-							<li class="layui-nav-item"><a class="" target="view_frame">${pNode.name}</a>
+							<li class="layui-nav-item"><a>${pNode.name}</a>
 								<dl class="layui-nav-child">
 									<c:forEach items="${pNode.children}" var="node" varStatus="j">
 										<c:if test="${j.index eq 0 }">
 											<dd class="layui-this">
-												<a href="${node.ahref}" target="view_frame">${node.name}</a>
+												<a href="javascript:void(0);"  onclick="goPage('${node.ahref}')" >${node.name}</a>
 											</dd>
 										</c:if>
 										<c:if test="${j.index gt 0 }">
 											<dd>
-												<a href="${node.ahref}" target="view_frame">${node.name}</a>
+												<a href="javascript:void(0);"  onclick="goPage('${node.ahref}')" >${node.name}</a>
 											</dd>
 										</c:if>
 									</c:forEach>
@@ -90,8 +99,8 @@
 		</div>
 		<div class="layui-body">
 			<!-- 内容主体区域 -->
-			<div style="padding: 15px;">
-				<iframe name="view_frame" width="100%" height="500" scrolling="auto" frameborder=0></iframe>
+			<div style="padding: 15px;" id="page">
+				
 			</div>
 		</div>
 		<div class="layui-footer">
@@ -100,14 +109,13 @@
 		</div>
 	</div>
 </body>
-<script src="/plugin/js/jquery-3.2.1.min.js" charset="utf-8"></script>
-<script src="/plugin/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript">
 	layui.config({
 		version : '1511048241431' //为了更新 js 缓存，可忽略
 	});
 	layui.use([ 'element' ], function() {
 		var element = layui.element; //元素操作
+		$("#page").load("/welcome/6");
 	});
 	KindEditor.ready(function(K) {
 	});

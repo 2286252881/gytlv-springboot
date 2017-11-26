@@ -2,10 +2,12 @@ $(function(){
 	$(".btn").click(function() {
 		var username = $("#username").val();
 		var password = $("#password").val();
-		login(username, password);
+		var rememberMe = $("#rememberMe").is(':checked');
+		console.log(rememberMe);
+		login(username, password,rememberMe);
 	});
 });
-function login(username, password) {
+function login(username, password,rememberMe) {
 	$.ajax({
 		url : '/checkLogin',
 		type : 'post',
@@ -14,7 +16,8 @@ function login(username, password) {
 		datatype : 'json',
 		data : {
 			'username' : username,
-			'password' : password
+			'password' : password,
+			'rememberMe': rememberMe
 		},
 		success : function(res) {
 			if (res.status == '500') {

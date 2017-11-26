@@ -3,10 +3,13 @@ package com.zh.gytlv.config.shiro;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,9 +23,9 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		// 拦截器.
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
+		filterChainDefinitionMap.put("/details", "user"); 
 		// 配置不会被拦截的链接 顺序判断
 		filterChainDefinitionMap.put("/", "anon");
-		filterChainDefinitionMap.put("/third/**", "anon");
 		filterChainDefinitionMap.put("/after/**", "anon");
 		filterChainDefinitionMap.put("/before/**", "anon");
 		filterChainDefinitionMap.put("/plugin/**", "anon");
@@ -30,7 +33,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/support", "anon");
 		filterChainDefinitionMap.put("/click", "anon");
 		filterChainDefinitionMap.put("/checkLogin", "anon");
-		//filterChainDefinitionMap.put("/parseExcel", "anon");
+		// filterChainDefinitionMap.put("/parseExcel", "anon");
 		// 配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
 		filterChainDefinitionMap.put("/logout", "logout");
 		filterChainDefinitionMap.put("/**", "authc");
@@ -54,6 +57,7 @@ public class ShiroConfig {
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		securityManager.setRealm(myRealm());
+		securityManager.setRememberMeManager(rememberMeManager());
 		return securityManager;
 	}
 
@@ -67,5 +71,22 @@ public class ShiroConfig {
 		DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
 		daap.setProxyTargetClass(true);
 		return daap;
+	}
+
+	@Bean
+	public SimpleCookie rememberMeCookie() {
+		// 这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+		SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+		// <!-- 记住我cookie生效时间30天 ,单位秒;-->
+		simpleCookie.setMaxAge(259200);
+		return simpleCookie;
+	}
+
+	@Bean
+	public CookieRememberMeManager rememberMeManager() {
+		CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+		cookieRememberMeManager.setCookie(rememberMeCookie());
+		cookieRememberMeManager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
+		return cookieRememberMeManager;
 	}
 }

@@ -20,8 +20,8 @@ public class ArticleServiceImpl implements  ArticleService{
 		List<Article> articles=articleMapper.getAllArticle();
 		for (Article article : articles) {
 			article.setArticlecontent(article.getArticlecontent().replaceAll("<img[^>]*>", ""));
-			if(article.getArticlecontent().length()>100){
-				article.setArticlecontent(article.getArticlecontent().substring(0, 100));
+			if(article.getArticlecontent().length()>500){
+				article.setArticlecontent(article.getArticlecontent().substring(0,article.getArticlecontent().indexOf('。')+1));
 			}
 		}
 		return articles;

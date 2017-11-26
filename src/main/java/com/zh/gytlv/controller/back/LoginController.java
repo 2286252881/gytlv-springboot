@@ -35,12 +35,13 @@ public class LoginController {
 
 	@RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
 	@ResponseBody
-	public Object checkLogin(HttpServletRequest request, String username, String password) {
+	public Object checkLogin(HttpServletRequest request, String username, String password,boolean rememberMe) {
 		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+		System.out.println(rememberMe);
 		Subject currentUser = SecurityUtils.getSubject();
 		if (!currentUser.isAuthenticated()) {
 			try {
-				UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+				UsernamePasswordToken token = new UsernamePasswordToken(username, password,rememberMe);
 				resultMap.put("status", 200);
 				currentUser.login(token);
 			} catch (AuthenticationException ae) {

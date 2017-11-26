@@ -27,6 +27,6 @@
 	</div>
 </body>
 <script type="text/javascript">
-	$("img").wrap('<a href="javascript:void(0)" class="thumbnail" style="text-decoration: none;"></a>');
+	//$("img").wrap('<a href="javascript:void(0)" class="thumbnail" style="text-decoration: none;"></a>');
 </script>
 </html>
