@@ -6,9 +6,13 @@ import org.csource.fastdfs.StorageClient1;
 import org.csource.fastdfs.StorageServer;
 import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.zh.gytlv.utils.parseExcel.ExcelFileParser;
 
 public class FastDFSClient {
-
+	private static Logger myLogger = LoggerFactory.getLogger(ExcelFileParser.class);
 	private TrackerClient trackerClient = null;
 	private TrackerServer trackerServer = null;
 	private StorageServer storageServer = null;
@@ -18,6 +22,7 @@ public class FastDFSClient {
 		if (conf.contains("classpath:")) {
 			conf = conf.replace("classpath:", this.getClass().getResource("/").getPath());
 		}
+		myLogger.info("fastdfs配置文件address:"+conf);
 		ClientGlobal.init(conf);
 		trackerClient = new TrackerClient();
 		trackerServer = trackerClient.getConnection();

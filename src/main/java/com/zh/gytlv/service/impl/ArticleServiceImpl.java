@@ -17,7 +17,14 @@ public class ArticleServiceImpl implements  ArticleService{
 
 	@Override
 	public List<Article> getAllArticle() {
-		return articleMapper.getAllArticle();
+		List<Article> articles=articleMapper.getAllArticle();
+		for (Article article : articles) {
+			article.setArticlecontent(article.getArticlecontent().replaceAll("<img[^>]*>", ""));
+			if(article.getArticlecontent().length()>100){
+				article.setArticlecontent(article.getArticlecontent().substring(0, 100));
+			}
+		}
+		return articles;
 	}
 
 	@Override

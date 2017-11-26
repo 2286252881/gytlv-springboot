@@ -14,7 +14,7 @@ public interface ArticleMapper {
 	 * 最新5条博客
 	 * @return
 	 */
-	@Select("SELECT a.id,a.articlename,a.articletime,a.articleclick,(SELECT t.articletypename FROM t_articletype t WHERE t.id=a.articletype) articletypename,(SELECT u.nickname FROM t_user u WHERE u.id=a.userid) nickname,SUBSTRING(a.articlecontent,1,100) articlecontent FROM t_article a ORDER BY a.articletime DESC LIMIT 5;")
+	@Select("SELECT a.id,a.articlename,a.articletime,a.articleclick,(SELECT t.articletypename FROM t_articletype t WHERE t.id=a.articletype) articletypename,(SELECT u.nickname FROM t_user u WHERE u.id=a.userid) nickname,a.articlecontent articlecontent FROM t_article a ORDER BY a.articletime DESC LIMIT 5;")
 	public List<Article> getAllArticle();
 	/**
 	 * 根据id查询详情

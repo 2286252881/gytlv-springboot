@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,11 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
+import com.github.tobato.fastdfs.domain.StorePath;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.zh.gytlv.entity.Article;
 import com.zh.gytlv.entity.ArticleType;
 import com.zh.gytlv.entity.User;
 import com.zh.gytlv.service.ArticleService;
-import com.zh.gytlv.utils.FastDFSClient;
 
 @Controller
 public class ArticleBackController {
@@ -67,15 +69,15 @@ public class ArticleBackController {
 	@Value("${IMAGE_SERVER_URL}")
 	private String IMAGE_SERVER_URL;
 	
+	@Autowired
+    public FastFileStorageClient fastFileStorageClient;
+	
 	@RequestMapping("pic/upload")
 	@ResponseBody
 	public Map<String,Object> picUpload(MultipartFile uploadFile,HttpServletRequest request){
-		String originalFilename=uploadFile.getOriginalFilename();
-		String extName=originalFilename.substring(originalFilename.lastIndexOf(".")+1);
 		try {
-			FastDFSClient fClient=new FastDFSClient("classpath:client.conf");
-			String url=fClient.uploadFile(uploadFile.getBytes(), extName);
-			url=IMAGE_SERVER_URL+url;
+			StorePath storePath=fastFileStorageClient.uploadImageAndCrtThumbImage(uploadFile.getInputStream(),uploadFile.getSize() , FilenameUtils.getExtension(uploadFile.getOriginalFilename()), null);
+			String url=IMAGE_SERVER_URL+storePath.getFullPath();
 			Map<String,Object> result=new HashMap<>();
 			result.put("error", 0);
 			result.put("url", url);
