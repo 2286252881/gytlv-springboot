@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
+import com.zh.gytlv.entity.ArticleVisitor;
 import com.zh.gytlv.entity.Menu;
 import com.zh.gytlv.entity.Permission;
 import com.zh.gytlv.entity.Role;
@@ -100,4 +101,18 @@ public interface UserMapper {
 		javaType=List.class,many=@Many(select="com.zh.gytlv.mapper.UserMapper.getNodes"))})
 	public List<Ztree> getAllNodes();
 	
+	/**
+	 * 查询改文章当天是否被同一个Ip访问
+	 * @param visitorIp
+	 * @param currentDate
+	 * @return
+	 */
+	@Select("select * from t_articlevisitor where visitorip=#{visitorip} and visitorarticleid=#{visitorarticleid} and DATEDIFF(visitortime,NOW())=0")
+	public List<ArticleVisitor> getVisitors(@Param("visitorip")String visitorIp,@Param("visitorarticleid")String id);
+
+	@Insert("insert into t_articlevisitor values(#{visitor.id},#{visitor.visitorip},#{visitor.visitortime},#{visitor.visitorarticleid})")
+	public void insertVisitor(@Param("visitor")ArticleVisitor visitor);
+	
+	@Insert("UPDATE t_article SET articleclick=articleclick+1 WHERE id=#{id}")
+	public void addReadNum(@Param("id")String id);
 }

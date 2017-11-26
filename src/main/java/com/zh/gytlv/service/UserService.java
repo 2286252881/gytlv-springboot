@@ -2,6 +2,7 @@ package com.zh.gytlv.service;
 
 import java.util.List;
 
+import com.zh.gytlv.entity.ArticleVisitor;
 import com.zh.gytlv.entity.Menu;
 import com.zh.gytlv.entity.Permission;
 import com.zh.gytlv.entity.Role;
@@ -32,4 +33,10 @@ public interface UserService {
 	public List<Ztree> getAllNodes();
 
 	public int regUser(String username, String password);
+
+	public List<ArticleVisitor> getVisitors(String visitorIp,String id);
+
+	public void insertVisitor(ArticleVisitor visitor);
+
+	public void addReadNum(String id);
 }

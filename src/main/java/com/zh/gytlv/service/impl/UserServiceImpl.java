@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zh.gytlv.entity.ArticleVisitor;
 import com.zh.gytlv.entity.Menu;
 import com.zh.gytlv.entity.Permission;
 import com.zh.gytlv.entity.Role;
@@ -74,6 +75,21 @@ public class UserServiceImpl implements UserService{
 		reguser.setUsername(username);
 		reguser.setPassword(password);
 		return userMapper.regUser(reguser);
+	}
+
+	@Override
+	public List<ArticleVisitor> getVisitors(String visitorIp,String id) {
+		return userMapper.getVisitors(visitorIp,id);
+	}
+
+	@Override
+	public void insertVisitor(ArticleVisitor visitor) {
+		userMapper.insertVisitor(visitor);
+	}
+
+	@Override
+	public void addReadNum(String id) {
+		userMapper.addReadNum(id);
 	}
 
 }
