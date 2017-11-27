@@ -28,14 +28,15 @@ public class GdMapUtils {
 		JSONObject jNode=null;
 		String location="0";
 		if (jsonObject.get("status").equals("1")) {
-			jNode = (JSONObject) jsonObject.getJSONArray("geocodes").get(0);
-			location=(String) jNode.get("location");
+			if(!jsonObject.getJSONArray("geocodes").isEmpty()){
+				jNode = (JSONObject) jsonObject.getJSONArray("geocodes").get(0);
+				location=jNode.getString("location");
+			}
 		}
-		System.out.println(location);
 		return location;
 	}
 
 	public static void main(String[] args) throws ParseException, IOException {
-		doGetStr("北京城区客服中心营业厅");
+		doGetStr("城区客服中心营业厅");
 	}
 }
