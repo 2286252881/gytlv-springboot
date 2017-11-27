@@ -13,6 +13,8 @@ public class SellArea {
 	private Integer provinceId;
 	private Integer cityId;
 	private String sellRemark;
+	private String provinceName;
+	private String cityName;
 	public Integer getSellId() {
 		return sellId;
 	}
@@ -73,6 +75,17 @@ public class SellArea {
 	public void setSellRemark(String sellRemark) {
 		this.sellRemark = sellRemark;
 	}
-	
+	public String getProvinceName() {
+		return provinceName;
+	}
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
+	public String getCityName() {
+		return cityName;
+	}
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
 	
 }

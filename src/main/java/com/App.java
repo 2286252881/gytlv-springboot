@@ -9,6 +9,7 @@ import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.jmx.support.RegistrationPolicy;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -19,6 +20,7 @@ import com.github.tobato.fastdfs.FdfsClientConfig;
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
 @Import(FdfsClientConfig.class)
 @SpringBootApplication
+@EnableScheduling
 @MapperScan("com.zh.gytlv.mapper")
 public class App extends WebMvcConfigurerAdapter{
 	public static void main(String[] args) {

@@ -51,6 +51,7 @@ public class ExcelController {
 			s.setSellRemark(list.get(i).get(3));
 			//(list.get(i).get(4));
 			String excleP=list.get(i).get(4);
+			s.setProvinceName(excleP);
 			String sysP="";
 			count++;
 			for (Province p : provinces) {
@@ -61,7 +62,9 @@ public class ExcelController {
 					continue;
 				}
 			}
+			//(list.get(i).get(5));
 			String excelC=list.get(i).get(5);
+			s.setCityName(excelC);
 			String sysC="";
 			for (City c : citys) {
 				sysC=c.getCityName();
@@ -71,15 +74,14 @@ public class ExcelController {
 					continue;
 				}
 			}
-			//(list.get(i).get(5));
 			sellAreas.add(s);
 		}
 		System.out.println(sellAreas.size());
 		for (SellArea finalSell : sellAreas) {
 			Integer id=sellAreas.lastIndexOf(finalSell)+1;
 			finalSell.setSellId(id);
-			finalSell.setSellMap(GdMapUtils.doGetStr(finalSell.getSellName().trim()));
-			//kstoreService.addSellArea(finalSell);
+			finalSell.setSellMap(GdMapUtils.doGetStr(finalSell.getProvinceName()+finalSell.getSellAddress().replaceAll("\\s*","")));
+			kstoreService.addSellArea(finalSell);
 		}
 	}
 }

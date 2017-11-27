@@ -12,7 +12,7 @@ import net.sf.json.JSONObject;
 import net.sf.jsqlparser.parser.ParseException;
 
 public class GdMapUtils {
-	private static final String URL = "http://restapi.amap.com/v3/geocode/geo?address=ADDRESS&output=JSON&key=e4d87142e4ffd9533c3a3487eec2fa8f";
+	private static final String URL = "http://restapi.amap.com/v3/geocode/geo?address=ADDRESS&output=JSON&key=0c63dc7ea7c8d503f5b889b08574184e";
 
 	public static String doGetStr(String pointName) throws ParseException, IOException {
 		DefaultHttpClient client = new DefaultHttpClient();
@@ -33,6 +33,8 @@ public class GdMapUtils {
 				location=jNode.getString("location");
 			}
 		}
+		System.out.println(pointName);
+		System.out.println(location);
 		return location;
 	}
 
