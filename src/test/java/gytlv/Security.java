@@ -49,6 +49,11 @@ public class Security {
 
 		return (new String(output));
 	}
+	/**
+	 * test
+	 * @param customerId
+	 * @return
+	 */
 	@SuppressWarnings("deprecation")
 	public static String cryptUrl(Long customerId){
 		String data=customerId.toString().concat(Security.USER_FOEM);
