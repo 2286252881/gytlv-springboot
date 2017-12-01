@@ -40,7 +40,8 @@ public class ExcelFileParser {
         return wb.getSheetAt(sheetIndex);
     }
 
-    public static List<List<String>> getExcelRows(Sheet sheet, int startLine, int endLine) {
+    @SuppressWarnings("unused")
+	public static List<List<String>> getExcelRows(Sheet sheet, int startLine, int endLine) {
         List<List<String>> list = new ArrayList<List<String>>();
         String province="";
         String city="";
