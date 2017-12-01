@@ -49,6 +49,7 @@ public class Security {
 
 		return (new String(output));
 	}
+	@SuppressWarnings("deprecation")
 	public static String cryptUrl(Long customerId){
 		String data=customerId.toString().concat(Security.USER_FOEM);
 		String token=Security.encrypt(data, Security.KEY);
