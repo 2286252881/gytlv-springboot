@@ -23,7 +23,7 @@ public class Jobs  {
     public void fixedRateJob(){
         System.out.println(DateUtil.formatDateByFormat(new Date(), DateUtil.DATETIME_FORMAT)+" >>fixedRate执行....");
     }*/
-    @Scheduled(cron="0 0 12 * * ?")
+    @Scheduled(cron="0 0 23 * * ?")
     public void cronJob(){
         System.out.println(DateUtil.formatDateByFormat(new Date(), DateUtil.DATETIME_FORMAT)+" >>cron执行....");
     }
