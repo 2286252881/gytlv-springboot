@@ -17,7 +17,7 @@ public class UrlRewriteFilterConfig extends UrlRewriteFilter {
 	private Resource resource;
 	protected void loadUrlRewriter(FilterConfig filterConfig) throws ServletException {
 		try {
-			Conf conf = new Conf(filterConfig.getServletContext(), resource.getInputStream(), resource.getFilename(), "@@traceability@@");
+			Conf conf = new Conf(filterConfig.getServletContext(), resource.getInputStream(), resource.getFilename(), "qqq124333ee");
 			checkConf(conf);
 		} catch (IOException ex) {
 			throw new ServletException("Unable to load URL rewrite configuration file from " + URL_REWRITE, ex);

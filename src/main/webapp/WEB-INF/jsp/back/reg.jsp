@@ -25,7 +25,7 @@
 				<label for="password">重复密码</label> <input type="password" class="form-control" id="passwordt" placeholder="请再次填写密码" value="">
 			</div>
 			<div class="form-group">
-				<label for="password">验证码 &nbsp;&nbsp;&nbsp;</label><input id="randomcode" name="randomcode" size="8" /> <img id="randomcode_img" src="/validatecode" alt="" width="56" height="20"> <a href=javascript:randomcode_refresh()>刷新</a>
+				<label for="password">验证码 &nbsp;&nbsp;&nbsp;</label><input id="randomcode" name="randomcode" size="8" /> <img id="randomcode_img" src="/validatecode" alt="" width="56" height="26"> <a href=javascript:randomcode_refresh()>刷新</a>
 			</div>
 		</form>
 		<div class="form-group">
