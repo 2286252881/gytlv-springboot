@@ -92,4 +92,9 @@ public class UserServiceImpl implements UserService{
 		userMapper.addReadNum(id);
 	}
 
+	@Override
+	public void truncateVisitor() {
+		userMapper.truncateVisitor();
+	}
+
 }

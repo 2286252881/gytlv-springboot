@@ -2,15 +2,19 @@ package com.zh.gytlv.config.quartz;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.zh.gytlv.service.UserService;
 import com.zh.gytlv.utils.DateUtil;
 
 @Component
 public class Jobs  {
 	public final static long ONE_Minute =  60 * 1000;
 	
+	@Autowired
+	private UserService userService;
 	
 	//fixedRate就是每多次分钟一次，不论你业务执行花费了多少时间。我都是1分钟执行1次
 	/*@Scheduled(fixedDelay=ONE_Minute)
@@ -25,6 +29,7 @@ public class Jobs  {
     }*/
     @Scheduled(cron="0 0 23 * * ?")
     public void cronJob(){
+    	userService.truncateVisitor();
         System.out.println(DateUtil.formatDateByFormat(new Date(), DateUtil.DATETIME_FORMAT)+" >>cron执行....");
     }
 

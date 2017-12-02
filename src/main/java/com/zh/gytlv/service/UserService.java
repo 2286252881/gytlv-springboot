@@ -39,4 +39,6 @@ public interface UserService {
 	public void insertVisitor(ArticleVisitor visitor);
 
 	public void addReadNum(String id);
+	
+	public void truncateVisitor();
 }
