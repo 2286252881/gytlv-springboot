@@ -13,11 +13,7 @@
 <body>
 	<jsp:include page="package/menu.jsp" />
 	<div class="jumbotron">
-		<h1>spirng boot....</h1>
-		<p>...</p>
-		<p>
-			<a class="btn btn-primary btn-lg" href="/" role="button">回到首页</a>
-		</p>
+		
 	</div>
 </body>
 </html>

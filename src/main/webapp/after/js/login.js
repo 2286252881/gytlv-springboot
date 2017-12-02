@@ -160,8 +160,9 @@ function login(username, password, rememberMe) {
 				return;
 			}
 			if (res.status == '200') {
-				$("#loginForm").attr("action", "/").attr("method", "post");
-				$("#loginForm").submit();
+				//$("#loginForm").attr("action", "/").attr("method", "post");
+				//$("#loginForm").submit();
+				window.location.href="/";
 			}
 		}
 	});

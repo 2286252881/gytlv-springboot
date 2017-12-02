@@ -19,7 +19,7 @@
 	</div>
 	<ul id="parger2" class="pagination"></ul>
 </shiro:hasRole>
-<shiro:lacksRole name="admin">对不起，你没有权限访问！</shiro:lacksRole>
+<shiro:lacksRole name="admin"><jsp:include page="/noAuthc"/></shiro:lacksRole>
 <script src="after/js/articlelist.js" type="text/javascript"></script>
 <script type="text/javascript">
 	wzlb();

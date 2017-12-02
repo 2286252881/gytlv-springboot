@@ -9,27 +9,35 @@
 <script src="plugin/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="plugin/js/dialog.js" type="text/javascript"></script>
 <script src="after/js/login.js" type="text/javascript"></script>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <title>清风暮雨</title>
 </head>
 <body>
-	<div style="margin: 5% auto; width: 500px; height: 300px">
-		<div class="thumbnail" align="center">thanks welcome!</div>
-		<form id="loginForm">
+	<shiro:notAuthenticated>
+		<div style="margin: 5% auto; width: 500px; height: 300px">
+			<div class="thumbnail" align="center">thanks welcome!</div>
+			<form id="loginForm">
+				<div class="form-group">
+					<label for="username">用户名</label><span id="usernametip"></span> <input type="text" class="form-control" id="username" placeholder="请填写用户名" value="root">
+				</div>
+				<div class="form-group">
+					<label for="password">密码</label> <input type="password" class="form-control" id="password" placeholder="请填写密码" value="">
+				</div>
+				<div class="form-group">
+					<input type="checkbox" name="rememberMe" id="rememberMe" checked="checked" />记住我<br>
+				</div>
+			</form>
 			<div class="form-group">
-				<label for="username">用户名</label><span id="usernametip"></span> <input type="text" class="form-control" id="username" placeholder="请填写用户名" value="root">
+				<button type="submit" id="login" class="btn btn-default">登录</button>
+				<button type="submit" id="reg" class="btn btn-default">注册</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="/">回到首页>>></a>
 			</div>
-			<div class="form-group">
-				<label for="password">密码</label> <input type="password" class="form-control" id="password" placeholder="请填写密码" value="">
-			</div>
-			<div class="form-group">
-				<input type="checkbox" name="rememberMe" id="rememberMe" checked="checked" />记住我<br>
-			</div>
-		</form>
-		<div class="form-group">
-			<button type="submit"  id="login"   class="btn btn-default">登录</button>
-			<button type="submit"  id="reg"    class="btn btn-default">注册</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;<a href="/">回到首页>>></a>
 		</div>
-	</div>
+	</shiro:notAuthenticated>
+	<shiro:authenticated>
+		<%
+			response.sendRedirect("/");
+		%>
+	</shiro:authenticated>
 </body>
 </html>
